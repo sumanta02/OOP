@@ -12,7 +12,7 @@ class Queue
     void enqueue();
     void dequeue();
     void display();
-    ~Queue(){delete arr;cout << "\nQueue Destroyed;"};
+    ~Queue(){delete arr;cout << "\nQueue Destroyed;";};
 };
 
 template <class T>
@@ -87,6 +87,7 @@ int main()
     intQ.display();
     intQ.dequeue();
     intQ.display();
+    intQ.dequeue();
     cout << "\nUsing float array: ";
     floatQ.dequeue();
     floatQ.enqueue();
@@ -97,6 +98,7 @@ int main()
     floatQ.display();
     floatQ.dequeue();
     floatQ.display();
+    floatQ.dequeue();
     cout << "\nUsing character array: ";
     charQ.dequeue();
     charQ.enqueue();
@@ -107,5 +109,6 @@ int main()
     charQ.display();
     charQ.dequeue();
     charQ.display();
+    charQ.dequeue();
     return 0;
 }
