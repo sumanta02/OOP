@@ -113,28 +113,66 @@ matrix<T>::~matrix()
 
 int main()
 {
-    int row1, col1, row2, col2, choice = 0;
-    cout << "\nUsing integer matrix: \n";
-    cout << "\nUsing a 3x2 and 2x3 matrix: \n";
-    matrix<int> intMatA(3, 2, 1);
-    matrix<int> intMatB(2, 3, 1);
-    matrix<int> intMatC = intMatA * intMatB;
-	cout << "\nMatrix A:\n";
-	intMatA.display();
-	cout << "\nMatrix B:\n";
-	intMatB.display();
-	cout << "\nMatrix C:\n";
-	intMatC.display();
-	cout << "\nUsing float matrix: \n";
-    cout << "\nUsing a 3x2 and 2x3 matrix: \n";
-    matrix<float> floatMatA(3, 2, 1);
-    matrix<float> floatMatB(2, 3, 1);
-    matrix<float> floatMatC = floatMatA * floatMatB;
-	cout << "\nMatrix A:\n";
-	floatMatA.display();
-	cout << "\nMatrix B:\n";
-	floatMatB.display();
-	cout << "\nMatrix C:\n";
-	floatMatC.display();
-	return 0;
+    int row1, col1, row2, col2, choice = 0, isCompatible = 0;
+	while (isCompatible != 1)
+	{
+		cout << "\nEnter dimensions for matrix 1: ";
+		cin >> row1 >> col1;
+		cout << "\nEnter dimensions for matrix 2: ";
+		cin >> row2 >> col2;
+		if (col1 == row2)	isCompatible = 1;
+	}
+	while (choice != 4)
+	{
+		cout << "\nUse\n1 -> Integer Matrix\n2 -> Float Matrix\n3 -> Enter new dimensions\n4 -> Exit\nEnter Your Choice: ";
+		cin >> choice;
+		switch (choice)
+		{
+		case 1:
+		{
+			matrix<int> intMatA(row1, col1, 1);
+			matrix<int> intMatB(row2, col2, 1);
+			matrix<int> intMatC = intMatA * intMatB;
+			cout << "\nMatrix 1:\n";
+			intMatA.display();
+			cout << "\nMatrix 2:\n";
+			intMatB.display();
+			cout << "\nResultant Matrix:\n";
+			intMatC.display();
+			break;
+		}
+		case 2:
+		{
+			matrix<float> intMatA(row1, col1, 1);
+			matrix<float> intMatB(row2, col2, 1);
+			matrix<float> intMatC = intMatA * intMatB;
+			cout << "\nMatrix 1:\n";
+			intMatA.display();
+			cout << "\nMatrix 2:\n";
+			intMatB.display();
+			cout << "\nResultant Matrix:\n";
+			intMatC.display();
+			break;
+		}
+		case 3:
+		{
+			isCompatible = 0;
+			while (isCompatible != 1)
+			{
+				cout << "\nEnter dimensions for matrix 1: ";
+				cin >> row1 >> col1;
+				cout << "\nEnter dimensions for matrix 2: ";
+				cin >> row2 >> col2;
+				if (col1 == row2)	isCompatible = 1;
+				else	cout << "\nInvalid dimensions.\nPlease input dimensions again.\n";
+				
+			}
+			break;
+		}
+		default:
+			cout << "\nInvalid Choice.\n";
+			break;
+		}
+	}
+	
 }
