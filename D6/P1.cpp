@@ -8,28 +8,26 @@ using namespace std;
 class tooHot : public exception
 {
     int temp;
-    string s;
     public:
-    tooHot(int t) : temp(t){s = "\nTemperature " + to_string(temp) + " is too hot.\n";};
-    ~tooHot(){};
+    tooHot(int t) : temp(t){};
+    ~tooHot() throw() {};
     const char * what() const throw()
     {
-        const char * S = s.data();
-        return S;
+        cout << "\nTemperature: " << temp;
+        return " is too hot.\n";
     };
 };
 
 class tooCold : public exception
 {
     int temp;
-    string s;
     public:
-    tooCold(int t) : temp(t){s = "\nTemperature " + to_string(temp) + " is too cold.\n";};
-    ~tooCold(){};
+    tooCold(int t) : temp(t){};
+    ~tooCold() throw() {};
     const char * what() const throw()
     {
-        const char * S = s.c_str();
-        return S;
+        cout << "\nTemperature: " << temp;
+        return " is too cold.\n";
     };
 };
 
@@ -41,8 +39,8 @@ int main()
 
     try
     {
-        if(t > 40) {throw tooHot(t);;}
-        else if(t < 20)   {throw tooCold(t);;}
+        if(t > 40) {throw tooHot(t);}
+        else if(t < 20)   {throw tooCold(t);}
         cout << "\nTemperature: " << t << endl;
     }
 

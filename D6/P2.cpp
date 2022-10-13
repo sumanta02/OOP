@@ -9,8 +9,8 @@ class A
         A(int num = 0) : a(num){};
         A operator ++ () {return A(++a);};
         A operator ++ (int) {return A(a++);};
-        A operator -- () {return A(--a);};
-        A operator -- (int) {return A(a--);};
+        friend A operator -- (A &);
+        friend A operator -- (A &, int);
         friend ostream & operator << (ostream & output, const A & obj)
         {
             output << "\nValue of a: " << obj.a << endl;
@@ -23,17 +23,26 @@ class A
         }
 };
 
+A operator -- (A & obj)
+{
+    return A(--obj.a);
+}
+A operator -- (A & obj, int)
+{
+    return A(obj.a--);
+}
+
 int main()
 {
-    A obj1(5), obj2;
+    A obj1(5), obj2 = obj1;
     cout << "\nobj1 initialized : " << obj1 << "\nobj2 initialized : " << obj2 << endl;
-    cout << "\nobj1++ : " << obj1++ << endl;
-    cout << "\nobj1-- : " << obj1-- << endl;
-    cout << "\n++obj1 : " << ++obj1 << endl;
-    cout << "\n--obj1 : " << --obj1 << endl;
-    cout << "\nFinal value of obj1 : " << obj1 << endl;
-    cout << "Enter a value: ";
-    cin >> obj2;
-    cout << "\nobj2 :" << obj2;
+    obj2 = obj1++;
+    cout << "obj1++\nobj2: " << obj2 << "obj1: " << obj1;
+    obj2 = ++obj1;
+    cout << "++obj1\nobj2: " << obj2 << "obj1: " << obj1;
+    obj2 = obj1--;
+    cout << "obj1--\nobj2: " << obj2 << "obj1: " << obj1;
+    obj2 = --obj1;
+    cout << "--obj1\nobj2: " << obj2 << "obj1: " << obj1;
     return 0;
 }
