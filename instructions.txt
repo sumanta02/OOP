@@ -1,0 +1,20 @@
+#To run D8
+in D8/organization run
+javac -d . Employee.java 
+javac -d . project/Manager.java
+
+to execute 
+
+java organization.project.Manager
+
+
+#To run D8
+
+in D8-V2 run
+
+javac -d . organization/Employee.java 
+javac -d . Project/Manager.java 
+
+to execute 
+
+java Project.Manager
