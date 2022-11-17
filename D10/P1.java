@@ -1,7 +1,7 @@
 package D10;
 
-import java.util.*;
 import java.lang.Thread;
+import java.util.Random;
 
 class Stack {
     boolean flag = false;
@@ -46,20 +46,19 @@ class Stack {
 class T1 implements Runnable
 {
     Stack m;
-    int[] values;
+    Random rand = new Random();
 
-    public T1(Stack m1, int[] values)
+    public T1(Stack m1)
     {
         this.m = m1;
-        this.values = values;
         new Thread(this,"Push").start();
     }
 
     public void run()
     {
-        for(int i=0;i<m.arr.length;i++)
+        for(int i=0;i<10;i++)
         {
-            m.Push(values[i]);
+            m.Push(rand.nextInt(1000));
         }
     }
 }
@@ -76,7 +75,7 @@ class T2 implements Runnable
 
     public void run()
     {
-        for(int i=0;i<m.arr.length;i++)
+        for(int i=0;i<10;i++)
         {
             m.Pop();
         }
@@ -86,25 +85,10 @@ class T2 implements Runnable
 public class P1 {
     public static void main(String args[])
     {
-
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("\nEnter the number of elements to push/pop : ");
-        
-        int pushLen = sc.nextInt();
-        Stack s = new Stack(pushLen);
-
-        int[] values = new int[pushLen];
-        for(int i=0;i<pushLen;i++)
-        {
-            System.out.print("\nEnter Value to Push : ");
-            values[i] = sc.nextInt();
-        }
-        new T1(s, values);
+        Stack s = new Stack(1);
+        new T1(s);
         new T2(s);
 
         System.out.println("\n");
-
-        sc.close();
     }
 }
