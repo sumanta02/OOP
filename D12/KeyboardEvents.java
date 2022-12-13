@@ -15,7 +15,7 @@ public class KeyboardEvents extends Applet implements KeyListener {
       area.addKeyListener(this);
       add(l);
       add(area);
-      setSize(400, 400);
+      setSize(900, 900);
       setLayout(null);
       setVisible(true);
    }
@@ -69,7 +69,7 @@ public class KeyboardEvents extends Applet implements KeyListener {
 }
 /*
  * 
- * <applet code = KeyboardEvents.class width=400 height=400>
+ * <applet code = KeyboardEvents.class width=900 height=900>
  * 
  * </applet>
  * 
