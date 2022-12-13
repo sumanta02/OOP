@@ -3,14 +3,15 @@ import java.awt.event.*;
 import java.applet.*;
 
 public class KeyboardEvents extends Applet implements KeyListener {
-   Label l;
-   TextArea area;
+   
+   TextArea area, l;
 
    public KeyboardEvents() {
-      l = new Label();
-      l.setBounds(20, 50, 100, 20);
+      l = new TextArea();
+      l.setEditable(false);
+      l.setBounds(10, 350, 500, 500);
       area = new TextArea();
-      area.setBounds(20, 80, 300, 300);
+      area.setBounds(10, 10, 300, 300);
       area.addKeyListener(this);
       add(l);
       add(area);
@@ -20,15 +21,46 @@ public class KeyboardEvents extends Applet implements KeyListener {
    }
 
    public void keyPressed(KeyEvent e) {
-      l.setText("Key Pressed: " + e.getKeyChar());
+      displayInfo(e, "Key Pressed: ");
    }
 
    public void keyReleased(KeyEvent e) {
-      l.setText("Key Released: " + e.getKeyChar());
+      displayInfo(e, "Key Released: ");
    }
 
    public void keyTyped(KeyEvent e) {
-      l.setText("Key Typed: " + e.getKeyChar());
+      displayInfo(e, "Key Typed: ");
+   }
+
+   void displayInfo(KeyEvent e, String output) {
+      int id = e.getID();
+        String keyString;
+        if (id == KeyEvent.KEY_TYPED) {
+            char c = e.getKeyChar();
+            keyString = "key character = '" + c + "'";
+        } else {
+            int keyCode = e.getKeyCode();
+            keyString = "key code = " + keyCode
+                    + " ("
+                    + KeyEvent.getKeyText(keyCode)
+                    + ")";
+        }
+      int modifiersEx = e.getModifiersEx();
+      String modString = "extended modifiers = " + modifiersEx;
+      String tmpString = KeyEvent.getModifiersExText(modifiersEx);
+        if (tmpString.length() > 0) {
+            modString += " (" + tmpString + ")";
+        } else {
+            modString += " (no extended modifiers)";
+        }
+        
+        String actionString = "action key? ";
+        if (e.isActionKey()) {
+            actionString += "YES";
+        } else {
+            actionString += "NO";
+        }
+        l.setText(output + "\n" + keyString + "\n" + modString + "\n" + actionString + "\n");
    }
 
    public void init() {
